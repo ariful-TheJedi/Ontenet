@@ -1,27 +1,30 @@
 "use client";
 import { useEffect, useState } from "react";
 import GalleryClient from "./GalleryClient";
+import Loading from "@/components/sub-components/Loading";
 import useGalleryImages from "@/components/hooks/imageGallery";
 
 export default function ImagesPage() {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
 
-  // Get slug from URL
+  // ✅ Get slug from URL
   useEffect(() => {
     const path = window.location.pathname;
     const currentSlug = path.split("/images/")[1];
     if (currentSlug) {
-      const decoded = decodeURIComponent(currentSlug);
-      setSlug(decoded);
-      setTitle(decoded.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()));
+      setSlug(currentSlug);
+      const formatted = currentSlug
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase());
+      setTitle(formatted);
     }
   }, []);
 
-  // Load images only after slug is ready
+  // ✅ Fetch gallery once slug is ready
   const { gallery, loading, error } = useGalleryImages(slug);
 
-  // Update <title> and <meta description>
+  // ✅ Update document title + meta description
   useEffect(() => {
     if (title) {
       document.title = `${title} | Dr. Muhammad Abdur Razzak`;
@@ -38,8 +41,13 @@ export default function ImagesPage() {
     }
   }, [title]);
 
-  if (!slug || loading) return <div className="loading-fullscreen">Loading...</div>;
-  if (error) return <p className="loading-fullscreen">⚠️ {error.message}</p>;
+  // ✅ Handle loading & error states
+  if (!slug || loading) return <Loading />;
+  if (error)
+    return <p className="loading-fullscreen">⚠️ {error.message}</p>;
+  if (!gallery || !gallery.images)
+    return <p className="loading-fullscreen">No images found</p>;
 
-  return <GalleryClient title={title} />;
+  // ✅ Pass fetched data to GalleryClient
+  return <GalleryClient gallery={gallery} title={title} />;
 }

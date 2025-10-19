@@ -1,1 +1,4 @@
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+1. contact nav not working
+2. publication link not working
+3. download cv and 

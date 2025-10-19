@@ -120,16 +120,17 @@ const About = () => {
         </div>
 
         <div className="home-aboute-actions">
-          <a
-            href={API_URL + "/wp-content/uploads/2025/10/hero-1.png"}
+          <Link
+            href={API_URL + "/wp-content/uploads/2025/10/cv-dr-abdur-razzak.pdf"}
             download
             className="home-aboute-btn home-aboute-btn-download"
+            alt="vd Download dr abdur razzak"
           >
             Download CV
-          </a>
-          <a href="/about-me" className="home-aboute-btn home-aboute-btn-learn">
+          </Link>
+          <Link href="/about-me" className="home-aboute-btn home-aboute-btn-learn">
             Learn More
-          </a>
+          </Link>
         </div>
       </div>
     </section>
@@ -186,7 +187,7 @@ const Qualification = () => (
       </div>
 
       <div className="hom-qualifications-btn-container">
-        <Link href="/cv" className="hom-qualifications-btn">
+        <Link href="/CV" className="hom-qualifications-btn">
           Learn More
         </Link>
       </div>

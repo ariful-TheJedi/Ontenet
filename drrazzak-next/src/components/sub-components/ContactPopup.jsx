@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 
 const ContactPopup = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -36,9 +37,9 @@ const ContactPopup = ({ isOpen, onClose }) => {
         </div>
 
         <center>
-          <a className="contact-popup-button" href="/contact">
+          <Link onClick={onClose} className="contact-popup-button" href="/contact">
             More Contact
-          </a>
+          </Link>
         </center>
 
         <div className="contact-popup-social">

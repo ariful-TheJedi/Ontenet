@@ -2,20 +2,19 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Loading from "@/components/sub-components/Loading";
-import useGalleryImages from "@/components/hooks/imageGallery";
 
-export default function GalleryClient({ title }) {
+export default function GalleryClient({ gallery, title }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
-  const { gallery, error, loading } = useGalleryImages(title);
 
   const closeOverlay = () => setSelectedIndex(null);
+
   const prevImage = (e) => {
     e.stopPropagation();
     setSelectedIndex((prev) =>
       prev === 0 ? gallery.images.length - 1 : prev - 1
     );
   };
+
   const nextImage = (e) => {
     e.stopPropagation();
     setSelectedIndex((prev) =>
@@ -23,13 +22,10 @@ export default function GalleryClient({ title }) {
     );
   };
 
-  if (loading) return <Loading />;
-  if (error) return <p className="loading-fullscreen">⚠️ {error.message}</p>;
-  if (!gallery || !gallery.images)
-    return <p className="loading-fullscreen">No images found</p>;
-
   return (
     <div className="image-gallery-container">
+      {/* <h1 className="gallery-title">{title}</h1> */}
+
       <div className="image-gallery-grid">
         {gallery.images.map((img, idx) => (
           <Image
@@ -69,9 +65,12 @@ export default function GalleryClient({ title }) {
           </button>
         </div>
       )}
-       {loading || <div className="image-gallery-backto-gallery">
-           <Link href="/gallery" alt="go to image gallery page">Back To Gallery</Link>
-        </div>}
+
+      <div className="image-gallery-backto-gallery">
+        <Link href="/gallery" alt="go to image gallery page">
+          ← Back To Gallery
+        </Link>
+      </div>
     </div>
   );
 }

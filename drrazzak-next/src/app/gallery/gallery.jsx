@@ -49,6 +49,8 @@ const Gallery = ({ title }) => {
   }
   if (loading) return <Loading />;
 
+  if(categories.length === 0) return <p className="loading-fullscreen">No data found</p>;
+
   return (
     <div className="gallery-container">
       {categories.map((gallery, i) => (

@@ -66,14 +66,13 @@ const Blogs = () => {
   if (error)
     return <p className="loading-fullscreen">⚠️ {error}</p>;
 
-
   return (
     <div className="blogs-container">
       {posts.map((category, i) => (
         <section className="blogs" key={i}>
           <h1
             className="blogs-category"
-            dangerouslySetInnerHTML={{ __html: category.category }}
+            dangerouslySetInnerHTML={{ __html: category.category_name }}
           />
           <div className="blogs-grid">
             {category.posts.map((post, index) => (

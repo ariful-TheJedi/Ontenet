@@ -1,25 +1,21 @@
 "use client";
 import { useState } from "react";
-import { useParams } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import Loading from "@/components/sub-components/Loading";
-import useGalleryImages from "@/components/Hooks/imageGallery";
+import useGalleryImages from "@/components/hooks/imageGallery";
 
-export default function ImageGalleryPage() {
+export default function GalleryClient({ title }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
-  const { title } = useParams();
   const { gallery, error, loading } = useGalleryImages(title);
 
-
   const closeOverlay = () => setSelectedIndex(null);
-
   const prevImage = (e) => {
     e.stopPropagation();
     setSelectedIndex((prev) =>
       prev === 0 ? gallery.images.length - 1 : prev - 1
     );
   };
-
   const nextImage = (e) => {
     e.stopPropagation();
     setSelectedIndex((prev) =>
@@ -34,33 +30,23 @@ export default function ImageGalleryPage() {
 
   return (
     <div className="image-gallery-container">
-      {/* Grid of images */}
       <div className="image-gallery-grid">
         {gallery.images.map((img, idx) => (
-          // <img
-          //   key={idx}
-          //   src={img.url}
-          //   alt={img.alt || img.title}
-          //   className="image-gallery-img"
-          //   onClick={() => setSelectedIndex(idx)}
-          //   loading="lazy"
-          // />
           <Image
             key={idx}
             src={img.url}
-            alt={img.alt || img.title}
+            alt={img.alt || "dr muhammad razzak images"}
             className="image-gallery-img"
             loading="lazy"
             unoptimized
-            width={500}     
-            height={500}    
+            width={500}
+            height={500}
             style={{ width: "auto", height: "auto" }}
             onClick={() => setSelectedIndex(idx)}
           />
         ))}
       </div>
 
-      {/* Overlay for enlarged image */}
       {selectedIndex !== null && (
         <div className="image-gallery-overlay" onClick={closeOverlay}>
           <span className="image-gallery-close" onClick={closeOverlay}>
@@ -69,16 +55,23 @@ export default function ImageGalleryPage() {
           <button className="image-gallery-prev" onClick={prevImage}>
             &#10094;
           </button>
-          <img
+          <Image
             src={gallery.images[selectedIndex].url}
             alt={gallery.images[selectedIndex].alt || "enlarged"}
             className="image-gallery-full"
+            unoptimized
+            width={900}
+            height={900}
+            style={{ width: "auto", height: "auto" }}
           />
           <button className="image-gallery-next" onClick={nextImage}>
             &#10095;
           </button>
         </div>
       )}
+       {loading || <div className="image-gallery-backto-gallery">
+           <Link href="/gallery" alt="go to image gallery page"> ← Back To Gallery</Link>
+        </div>}
     </div>
   );
 }
