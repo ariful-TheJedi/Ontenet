@@ -65,7 +65,7 @@ export default function AboutMe({title}) {
         </div>
         <ul className="maboute-me-publication">
           <li>
-            <a href="/Publications">
+            <a href="/publications">
               <span>Publications</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <line x1="7" y1="17" x2="17" y2="7"/>
