@@ -4,13 +4,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 
+
 const Logo = () => (
   <Link href="/" aria-label="Dr. Abdur Razzak">
     <div className="logo-container">
-      <img
+      <Image
         src="/logo.png"
         alt="dr.abdurrazzak transplant nephrologist medicine Bangladesh"
         className="logo-image"
+        height={20}
+        width={20}
       />
       <div className="logo-text">
         <span className="main-text">Dr. Muhammad Abdur Razzak</span>
@@ -114,14 +117,21 @@ function HeaderMobile() {
 //
 // Active Link Component for Next.js
 //
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 
 function ActiveLink({ href, children }) {
   const pathname = usePathname();
-  const isActive = pathname === href;
+
+  // Handle nested active states
+  const isActive =
+    pathname === href ||
+    (href === "/blogs" && pathname.startsWith("/post/")) ||
+    (href === "/gallery" && pathname.startsWith("/images/"));
+
   return (
-    <Link href={href} className={isActive ? 'active-link' : ''}>
+    <Link href={href} className={isActive ? "active-link" : ""}>
       {children}
     </Link>
   );
 }
+

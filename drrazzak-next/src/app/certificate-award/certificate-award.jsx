@@ -133,15 +133,29 @@ const Certificate = () => {
     document.body.style.overflow = "auto"; // restore scroll
   };
 
-  useEffect(() => {
-    document.querySelector(".certificate-awards-section").style.background = `url(${url}/wp-content/uploads/2025/10/award-section-background.webp) no-repeat center center/cover`;
-  }, [url]);
+  // useEffect(() => {
+  //   console.log(url);
+  //   document.querySelector(".certificate-awards-section").style.background = `url(${url}/wp-content/uploads/2025/10/award-section-background.webp) no-repeat center center/cover`;
+  // }, [url]);
 
 
   return (
     <div className="certificate-container">
       {/* === Awards Timeline === */}
       <section className="certificate-awards-section">
+       <div className="certificate-awards-section-background">
+          <Image
+          className="certificate-awards-section-background-img"
+          src={url+"/wp-content/uploads/2025/10/award-section-background.webp"}
+          alt="Background"
+          fill // <-- fills parent
+          priority
+          style={{
+          objectFit: "cover", // makes it act like background-size: cover
+          zIndex: -1,
+        }}
+          />
+       </div>
         {/* <h2>
           <i style={{ color: "#FFD700" }} className="fas fa-trophy"></i>
           Awards & Honors

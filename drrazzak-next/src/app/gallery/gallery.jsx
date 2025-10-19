@@ -12,12 +12,12 @@ import slugify from "@/components/Hooks/slugify";
 const GalleryCard = ({ title, link, images }) => {
   // same CSS classes as before — no changes
   return (
-    <Link href={`/images/${slugify(title)}`} className="gallery-card">
+    <Link href={`/images/${link}`} className="gallery-card">
       <h2 className="gallery-title">{title}</h2>
       <div className="gallery-grid">
         {images.map((img, idx) => {
           const src = typeof img === "string" ? img : img.src;
-          const alt = typeof img === "object" ? img.alt || title : title;
+          const alt = typeof img === "object" ? img.alt || title : "dr razzak photo";
           const className = typeof img === "object" ? img.className || "" : "";
 
           return (
@@ -39,6 +39,8 @@ const GalleryCard = ({ title, link, images }) => {
   );
 };
 
+
+
 const Gallery = ({ title }) => {
   const { categories, loading, error } = useGalleryCategories();
 
@@ -52,9 +54,9 @@ const Gallery = ({ title }) => {
       {categories.map((gallery, i) => (
         <div key={i}>
           <GalleryCard
-            title={gallery.name}
+            title={gallery.title}
             link={gallery.link}
-            images={gallery.preview}
+            images={gallery.images}
           />
         </div>
       ))}

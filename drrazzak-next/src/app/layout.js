@@ -13,10 +13,10 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 // ✅ Metadata for SEO
 export const metadata = {
   metadataBase: new URL("https://www.drabdurrazzak.com"),
-  title: {
-    default: " Dr. Muhammad Abdur Razzak - Certified Transplant Nephrologist",
-    template: "%s | Dr. Muhammad Abdur Razzak - Certified Transplant Nephrologist",
-  },
+  // title: {
+  //   default: " Dr. Muhammad Abdur Razzak - Certified Transplant Nephrologist",
+  //   template: "%s | Dr. Muhammad Abdur Razzak - Certified Transplant Nephrologist",
+  // },
   description:
     "Official website of Dr. Muhammad Abdur Razzak, transplant nephrologist specializing in kidney transplant and renal care.",
   keywords: [

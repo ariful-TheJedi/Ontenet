@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Loading from "@/components/sub-components/Loading";
 import useGalleryImages from "@/components/hooks/imageGallery";
 
@@ -34,7 +35,7 @@ export default function GalleryClient({ title }) {
           <Image
             key={idx}
             src={img.url}
-            alt={img.alt || img.title}
+            alt={img.alt || "dr muhammad razzak images"}
             className="image-gallery-img"
             loading="lazy"
             unoptimized
@@ -69,7 +70,7 @@ export default function GalleryClient({ title }) {
         </div>
       )}
        {loading || <div className="image-gallery-backto-gallery">
-           <a href="/gallery" alt="go to image gallery page">Back To Gallery</a>
+           <Link href="/gallery" alt="go to image gallery page">Back To Gallery</Link>
         </div>}
     </div>
   );

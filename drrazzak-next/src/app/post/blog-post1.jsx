@@ -1,57 +1,73 @@
 "use client";
 import { useEffect, useState } from "react";
 
-const API_URL = "https://sub.drabdurrazzak.com"; // <-- your WP API domain
+const API_URL = "https://sub.drabdurrazzak.com";
 
-export default function PostPage() {
+export default function BlogPost({ postSlug }) {
   const [post, setPost] = useState(null);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Extract post ID from ?id= query
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-
-    if (!id) {
-      setError(true);
+    if (!postSlug) {
+      setError("Invalid post slug");
       return;
     }
 
     async function fetchPost() {
       try {
-        const res = await fetch(`${API_URL}/wp-json/custom/v1/post/${id}`);
-        if (!res.ok) throw new Error("Post not found");
+        const res = await fetch(`${API_URL}/wp-json/custom/v1/post/${postSlug}`);
+        if (!res.ok) {
+          if (res.status === 404) throw new Error("Post not found");
+          throw new Error(`Request failed with status ${res.status}`);
+        }
+
         const data = await res.json();
+        if (!data || Object.keys(data).length === 0) {
+          throw new Error("No post data returned");
+        }
+
         setPost(data);
       } catch (err) {
-        console.error("Error fetching post:", err);
-        setError(true);
+        console.error("❌ Error fetching post:", err);
+        setError(err.message || "Failed to load post");
       }
     }
 
     fetchPost();
-  }, []);
+  }, [postSlug]);
 
+  // ⚠️ Error state (no redirect)
   if (error) {
-    window.location.href = "/404.html";
-    return null;
+    return (
+      <div className="error-message">
+        <h2>⚠️ Unable to load post</h2>
+        <p>{error}</p>
+        <a href="/blogs" className="back-link">← Back to Blogs</a>
+      </div>
+    );
   }
 
-  if (!post) return <div className="loading-fullscreen">Loading...</div>;
+  // If still fetching
+  if (!post) return null; // 🔹 Parent already shows the loading spinner
 
+  // ✅ Render post
   return (
     <div className="single-post">
-      {/* <title>{post.title} | Dr. Muhammad Abdur Razzak</title> */}
       <div className="post-content">
-        <div className="hero-image">
-          <img src={post.featured_image} alt={post.title} />
-        </div>
+        {post.featured_image && (
+          <div className="hero-image">
+            <img src={post.featured_image} alt={post.title} />
+          </div>
+        )}
+
         <div className="post-inner">
           <div className="post-meta">
-            <span
-              className="category"
-              dangerouslySetInnerHTML={{ __html: post.categories?.[0] }}
-            ></span>
+            {post.categories?.[0] && (
+              <span
+                className="category"
+                dangerouslySetInnerHTML={{ __html: post.categories[0] }}
+              />
+            )}
             <span className="date">
               <i className="far fa-calendar-alt"></i> {post.date}
             </span>
@@ -77,19 +93,14 @@ export default function PostPage() {
               </a>
               <p className="author-title">Transplant Nephrologist</p>
               <p className="author-posts">
-                <a href="/publications" alt="">
-                  12+ Publications
-                </a>
+                <a href="/publications">12+ Publications</a>
               </p>
             </div>
           </div>
 
           {/* Social Sharing */}
           <div className="social-sharing">
-            <a
-              href="https://www.facebook.com/nephrology.bd/"
-              className="facebook"
-            >
+            <a href="https://www.facebook.com/nephrology.bd/" className="facebook">
               <i className="fab fa-facebook-f"></i>
             </a>
             <a
@@ -113,6 +124,10 @@ export default function PostPage() {
               <i className="fab fa-x-twitter"></i>
             </a>
           </div>
+        </div>
+
+        <div className="post-backto">
+          <a href="/blogs" alt="go to image gallery page">Back To Blogs</a>
         </div>
       </div>
     </div>

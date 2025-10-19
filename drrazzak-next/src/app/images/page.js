@@ -5,34 +5,40 @@ import useGalleryImages from "@/components/hooks/imageGallery";
 
 export default function ImagesPage() {
   const [title, setTitle] = useState("");
-  const { gallery, loading, error } = useGalleryImages(title);
+  const [slug, setSlug] = useState("");
 
+  // Get slug from URL
   useEffect(() => {
     const path = window.location.pathname;
-    const slug = path.split("/images/")[1];
-    if (slug) setTitle(decodeURIComponent(slug));
+    const currentSlug = path.split("/images/")[1];
+    if (currentSlug) {
+      const decoded = decodeURIComponent(currentSlug);
+      setSlug(decoded);
+      setTitle(decoded.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()));
+    }
   }, []);
 
-  // dynamically update <title> and description
+  // Load images only after slug is ready
+  const { gallery, loading, error } = useGalleryImages(slug);
+
+  // Update <title> and <meta description>
   useEffect(() => {
     if (title) {
-      const formatted = title.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-      document.title = `${formatted} | Dr. Muhammad Abdur Razzak`;
+      document.title = `${title} | Dr. Muhammad Abdur Razzak`;
 
-      const meta = document.querySelector("meta[name='description']");
-      const desc = `Explore photo highlights from ${formatted}, featuring moments from conferences and workshops attended by Dr. Muhammad Abdur Razzak.`;
-      if (meta) {
-        meta.setAttribute("content", desc);
-      } else {
-        const newMeta = document.createElement("meta");
-        newMeta.name = "description";
-        newMeta.content = desc;
-        document.head.appendChild(newMeta);
+      const desc = `Explore photo highlights from ${title}, featuring moments from conferences and workshops attended by Dr. Muhammad Abdur Razzak.`;
+
+      let meta = document.querySelector("meta[name='description']");
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.name = "description";
+        document.head.appendChild(meta);
       }
+      meta.setAttribute("content", desc);
     }
   }, [title]);
 
-  if (loading || !title) return <div className="loading-fullscreen">Loading...</div>;
+  if (!slug || loading) return <div className="loading-fullscreen">Loading...</div>;
   if (error) return <p className="loading-fullscreen">⚠️ {error.message}</p>;
 
   return <GalleryClient title={title} />;

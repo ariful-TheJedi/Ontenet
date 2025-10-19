@@ -11,12 +11,11 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // -------------------- BlogPostCard --------------------
 export const BlogPostCard = ({
-  id,
   featured_image,
   date,
-  tags,
   title,
   excerpt,
+  slug
 }) => {
   return (
     <div className="blog-post-card">
@@ -28,7 +27,7 @@ export const BlogPostCard = ({
       <div className="blog-post-card-content">
         <div className="blog-post-card-meta">Published: {date}</div>
 
-        {tags && (
+        {/* {tags && (
           <div className="blog-post-card-tags">
             {tags.map((tag, index) => (
               <span key={index} className="blog-post-card-tag">
@@ -36,7 +35,7 @@ export const BlogPostCard = ({
               </span>
             ))}
           </div>
-        )}
+        )} */}
 
         <h3 className="blog-post-card-title">{title}</h3>
 
@@ -44,10 +43,11 @@ export const BlogPostCard = ({
 
         <div className="blog-post-card-button">
           <Link
-            href={{
-              pathname: `/post/${slugify(title)}`,
-              query: { id },
-            }}
+            // href={{
+            //   pathname: `/post/${slugify(slug)}`,
+            //   query: { id },
+            // }}
+            href={`/post/${slug}`}
             className="read-more-link"
           >
             Read More

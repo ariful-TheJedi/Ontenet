@@ -5,7 +5,7 @@ import slugify from "@/components/Hooks/slugify";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function BlogPostCard({
+export default function BlogPostCardLates({
   slug,
   featured_image,
   date,
@@ -46,7 +46,7 @@ export default function BlogPostCard({
         <p dangerouslySetInnerHTML={{ __html: excerpt }} />
 
         <div className="blog-post-card-button">
-          <Link href={`/post/${slug}`} className="read-more-link">
+          <Link href={slug} className="read-more-link">
             Read More
           </Link>
         </div>

@@ -263,15 +263,15 @@ const HomeContact = () => {
     error: null,
   });
 
-  useEffect(() => {
-    const element = document.querySelector(".home-contact-header");
-    if (element) {
-      element.style = `
-        background: url(${API_URL}/wp-content/uploads/2025/10/contact-background.jpg)
-        no-repeat center center / cover;
-      `;
-    }
-  }, []);
+  // useEffect(() => {
+  //   const element = document.querySelector(".home-contact-header");
+  //   if (element) {
+  //     element.style = `
+  //       background: url(${API_URL}/wp-content/uploads/2025/10/contact-background.jpg)
+  //       no-repeat center center / cover;
+  //     `;
+  //   }
+  // }, []);
 
   // Handle form submission with AJAX/Fetch
   const handleFormSubmit = async (event) => {
@@ -314,6 +314,17 @@ const HomeContact = () => {
   return (
     <div className="home-contact-wrapper">
       <header className="home-contact-header">
+      <Image 
+      className="home-contact-header-background-img"
+      src={API_URL+"/wp-content/uploads/2025/10/contact-background.jpg"}
+          alt="background"
+          fill // <-- fills parent
+          priority
+          style={{
+          zIndex: -1,
+          objectFit:"cover"
+        }}
+      />
         <div className="home-contact-header-overlay">
           <h1 className="home-contact-header-title">
             Find & Contact With Me

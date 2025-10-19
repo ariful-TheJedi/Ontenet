@@ -1,24 +1,16 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
 import BlogPost from "./blog-post";
-import unslugify from "@/components/hooks/unslugyfy";
 import Loading from "@/components/sub-components/Loading";
 
 export default function Page() {
   const [slug, setSlug] = useState(null);
 
-
   useEffect(() => {
     const path = window.location.pathname;
     const slugFromPath = path.split("/post/")[1];
     if (slugFromPath) setSlug(decodeURIComponent(slugFromPath));
-
-    document.title = `Blog post - ${unslugify(slug)} | Dr. Muhammad Abdur Razzak`;
-
-  }, [slug]);
-
-
-  //document.title = `Blog post - ${unslugify(slug)} | Dr. Muhammad Abdur Razzak`;
+  }, []);
 
   if (!slug) return <Loading />;
 
