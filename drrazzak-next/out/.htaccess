@@ -1,0 +1,77 @@
+# ==============================
+# Next.js Static Export + SEO + 404 Fix (Hostinger Compatible)
+# ==============================
+
+RewriteEngine On
+RewriteBase /
+
+# --- Force HTTPS (recommended for SEO)
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# --- Allow SEO assets (robots.txt, sitemap.xml, favicon, manifest)
+RewriteCond %{REQUEST_URI} ^/(robots\.txt|sitemap\.xml|favicon\.ico|manifest\.json)$ [NC]
+RewriteRule ^ - [L]
+
+# --- Allow direct access to real files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# ==============================
+# ✅ Custom Rule 1: Route all /post/* URLs to post.html
+# ==============================
+RewriteCond %{REQUEST_URI} ^/post/ [NC]
+RewriteRule ^post/.*$ /post.html [L]
+
+# ==============================
+# ✅ Custom Rule 2: Route all /images/* URLs to images.html
+# ==============================
+RewriteCond %{REQUEST_URI} ^/images/ [NC]
+RewriteRule ^images/.*$ /images.html [L]
+
+# --- Serve .html files if they exist
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# --- Handle all other unknown routes (nested or broken) with 404.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /404.html [L,R=404]
+
+# --- Custom 404 page definition (backup)
+ErrorDocument 404 /404.html
+
+
+# ==============================
+# ⚡ Performance Caching
+# ==============================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/* "access plus 1 month"
+  ExpiresByType font/* "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|png|jpg|jpeg|gif|webp|svg|ico|woff2?)$">
+    Header set Cache-Control "public, max-age=2592000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header unset ETag
+  </FilesMatch>
+</IfModule>
+
+# ==============================
+# 🔒 Security / Hardening
+# ==============================
+Options -Indexes
+ServerSignature Off
+
+<FilesMatch "(^\.|package\.json|composer\.json|next\.config\.js)">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
