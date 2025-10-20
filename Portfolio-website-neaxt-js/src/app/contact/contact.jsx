@@ -20,7 +20,8 @@ const Contact = () => {
       map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.2457729016455!2d90.3640743!3d23.7742609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c1b64516dd81%3A0x688d6881b977d083!2sAlliance%20hospital%20limited!5e0!3m2!1sen!2sbd!4v1759240736246!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrad',
       hours: [
         { day: 'Saturday - Monday', time: '2:30 PM - 3:30 PM' },
-        { day: 'Wednesday - Thursday', time: '2:30 AM - 3:30 PM' },
+        { day: 'Wednesday', time: '2:30 AM - 3:30 PM' },
+        { day: 'Thursday', time: '2:30 AM - 3:30 PM' },
         { day: 'Friday', time: 'Close' },
         { day: 'Tuesday', time: 'Closed' }
       ]
@@ -28,7 +29,7 @@ const Contact = () => {
     {
       id: 'Dhanmondi',
       name: 'Popular Diagnostic Centre Ltd.',
-      address: 'Floor no 6,Room no 508,House #16,Road No. 2, Dhanmondi,Dhaka 1205',
+      address: 'House #16,Road #2,Floor no 6,Room no 508,Dhanmondi,Dhaka 1205',
       phone: '+8801604707090',
       email: 'sufisabih@gmail.com',
       image: 'https://i.ytimg.com/vi/gILByEZR6bc/sddefault.jpg',
@@ -42,7 +43,7 @@ const Contact = () => {
     {
       id: 'Savar',
       name: 'Popular Diagnostic Centre Ltd.',
-      address: 'Nargis Tower, House No. E/22, Talbagh, Thana Bus Stand, Dhaka - Aricha Hwy, Savar 1340',
+      address: 'Nargis Tower,6th floor, rom no-608,House No. E/22, Talbagh, Thana Bus Stand, Dhaka - Aricha Hwy, Savar 1340',
       phone: '+8801604707090',
       email: 'sufisabih@gmail.com',
       image: 'https://doctorshomebd.com/wp-content/uploads/2023/11/Savar-Branch-Popular-Diagnostic-Centre-1024x683.jpg',
@@ -106,7 +107,7 @@ const Contact = () => {
             </div>
             <div className="contact-summary-item">
               <i className="fas fa-clock"></i>
-              <span>Mon-Sun: 10AM-6PM</span>
+              <span>Sun-Mon: 10AM-6PM</span>
             </div>
           </div>
         </div>
