@@ -1,0 +1,9 @@
+
+Header
+Footer
+Home
+CV
+About Me
+Publication
+Gallery 
+Blogs

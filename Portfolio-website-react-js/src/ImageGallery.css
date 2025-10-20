@@ -1,0 +1,126 @@
+/* Main container */
+.image-gallery-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Masonry-style grid */
+.image-gallery-grid {
+  column-count: 3;
+  column-gap: 10px;
+}
+
+.image-gallery-img {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+}
+
+.image-gallery-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Overlay effect */
+.image-gallery-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.image-gallery-full {
+  max-width: 95%;
+  max-height: 95%;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Close button */
+.image-gallery-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Prev/Next buttons */
+.image-gallery-prev,
+.image-gallery-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 1001;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.image-gallery-prev:hover,
+.image-gallery-next:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.image-gallery-prev {
+  left: 20px;
+}
+
+.image-gallery-next {
+  right: 20px;
+}
+
+/* "More Photos" button */
+.image-gallery-more-wrapper {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.image-gallery-more-btn {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.image-gallery-more-btn:hover {
+  background: #555;
+  transform: translateY(-2px);
+}
+
+/* Responsive columns */
+@media (max-width: 900px) {
+  .image-gallery-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .image-gallery-grid {
+    column-count: 1;
+  }
+}

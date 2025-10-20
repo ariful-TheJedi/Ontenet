@@ -1,0 +1,356 @@
+
+
+/* css reset and normalization */
+/* 1. Use a more-intuitive box-sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+
+#root{
+    min-height: 100vh;
+}
+
+
+
+/* importing font */
+@font-face {
+  font-family: 'MarkPro';
+  src: url('./assets/font/markpro.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  -webkit-text-size-adjust: 100%;
+}
+
+p{
+  font-size: 1rem;
+}
+
+/* 3. Allow percentage-based heights */
+html, body {
+  height: 100%;
+  font-weight:400;
+  font-family: "MarkPro",system-ui, -apple-system, BlinkMacSystemFont, 
+               "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, 
+               "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* 4. Set core body defaults */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  color: #000;
+  background-attachment: fixed; /* stays while scrolling */
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+
+/* background: radial-gradient(
+  circle at center,
+  #fcfbfe 0%,
+  #e9e3f9 50%,
+  #edeffc 90%,
+  #ffffff 100%
+); */
+
+
+/* background: radial-gradient(
+  circle at center,
+  #fcfbfe 0%,
+  #e9e3f9 50%,
+  #edeffc 90%,
+  #ffffff 100%
+); */
+
+
+/* background: radial-gradient(
+  circle at center,
+  #fdfcff 0%,
+  #eceffa 45%,
+  #d7ebf7 85%,
+  #f9fcfe 100%
+); */
+
+
+background: radial-gradient(
+  circle at center,
+  #faf9fe 0%,
+  #e8e2f7 40%,
+  #d9edf9 80%,
+  #fbfdfe 100%
+);
+
+
+
+
+
+}
+
+/* 5. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Remove built-in form typography styles */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Create a root stacking context */
+#root, #__next {
+  isolation: isolate;
+}
+
+/* 9. Anchor reset */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 10. Button reset */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 11. List reset */
+ul, ol {
+  list-style: none;
+}
+
+
+
+/* sticky contact button */
+.sticky-contact-button{
+  position: fixed;
+  width: 4.5rem;
+  right:-11px;
+  top:40%;
+  z-index: 1000;
+  transition: all .3s ease-in-out;
+}
+
+.sticky-contact-button:hover{
+  transform: scale(1.2)
+}
+
+
+@media (max-width: 600px) {
+  .sticky-contact-button{
+    top:60%;
+  }
+}
+
+
+/* contact popup styling */
+
+/* Overlay */
+.contact-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+/* Popup container */
+.contact-popup-container {
+  position: relative;
+  background: #563E82;
+  color: #fff;
+  border-radius: 20px;
+  padding: 50px 40px;
+  width: 90%;
+  max-width: 650px; /* Bigger */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  animation: slideUp 0.4s ease-out;
+  text-align: center;
+}
+
+/* Title */
+.contact-popup-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Info list */
+.contact-popup-info {
+  text-align: left;
+  margin: 0 auto;
+  max-width: 450px;
+}
+
+.contact-popup-info p {
+  font-size: 1.1rem;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-popup-info i {
+  font-size: 1.3rem;
+  color: #fff; /* consistent white */
+}
+
+
+.contact-popup-button {
+  margin-top: .5rem;
+  display: inline-block;
+  text-decoration: none;
+  background: #0966A9;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 1rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 6px 15px rgba(9, 102, 169, 0.3);
+  letter-spacing: 1px;
+}
+
+.contact-popup-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transition: left 0.4s ease;
+}
+
+.contact-popup-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(9, 102, 169, 0.45);
+}
+
+.contact-popup-button:hover::before {
+  left: 0;
+}
+
+.contact-popup-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(9, 102, 169, 0.4);
+}
+
+
+
+
+/* Social links */
+.contact-popup-social {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.contact-popup-social a {
+  font-size: 1.8rem;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.contact-popup-social a:hover {
+  transform: scale(1.2);
+  opacity: 0.85;
+}
+
+/* 🔹 Brand colors */
+.contact-popup-social .fa-x-twitter { color: black; }
+.contact-popup-social .fa-facebook { color: #1877f2; }
+.contact-popup-social .fa-instagram { color: #e4405f; }
+.contact-popup-social .fa-youtube { color: #ff0000; }
+
+
+.contact-popup-social a:hover {
+  transform: scale(1.2);
+  opacity: 0.85;
+}
+
+/* Close button */
+.contact-popup-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+  font-size: 1.6rem;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.3s ease;
+}
+
+.contact-popup-close span{
+  position: relative;
+  top:-4px;
+}
+
+.contact-popup-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(60px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .contact-popup-container {
+    padding: 35px 25px;
+    max-width: 95%;
+  }
+
+  .contact-popup-title {
+    font-size: 1.5rem;
+  }
+
+  .contact-popup-info p {
+    font-size: 1rem;
+  }
+}
