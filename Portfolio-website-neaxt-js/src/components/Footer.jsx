@@ -10,7 +10,7 @@ export default function Footer() {
     <img src="/footer.png" alt="dr muhammad abdur razzak"/>
   </div>
     <p className="footer-text">
-    Focused on transplant nephrology to fight kidney disease and give patients new chances at life.
+    Focused as a transplant nephrologist on fighting kidney disease and giving patients new chances at life.
   </p>
 </div>
 

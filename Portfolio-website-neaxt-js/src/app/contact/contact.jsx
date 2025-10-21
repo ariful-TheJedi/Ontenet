@@ -14,15 +14,15 @@ const Contact = () => {
       id: 'Shyamoli',
       name: 'Alliance Hospital Limited',
       address: '24/3, Khilji Road(Ring Road),Shyamoli,Dhaka-1207',
-      phone: '+88 02 222243620-22, +8801720422448',
+      phone: '+8801720422448',
       email: 'sufisabih@gmail.com',
       image: 'https://alliancehospitalbd.com/wp-content/uploads/2024/08/about-img-1.jpg',
       map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.2457729016455!2d90.3640743!3d23.7742609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c1b64516dd81%3A0x688d6881b977d083!2sAlliance%20hospital%20limited!5e0!3m2!1sen!2sbd!4v1759240736246!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrad',
       hours: [
-        { day: 'Saturday - Monday', time: '2:30 PM - 3:30 PM' },
+        { day: 'Saturday-Monday', time: '2:30 PM - 3:30 PM' },
         { day: 'Wednesday', time: '2:30 AM - 3:30 PM' },
         { day: 'Thursday', time: '2:30 AM - 3:30 PM' },
-        { day: 'Friday', time: 'Close' },
+        { day: 'Friday', time: 'Closed' },
         { day: 'Tuesday', time: 'Closed' }
       ]
     },
@@ -35,8 +35,8 @@ const Contact = () => {
       image: 'https://i.ytimg.com/vi/gILByEZR6bc/sddefault.jpg',
       map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.2197074814962!2d90.3821725!3d23.7395434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8ca7af5f82b%3A0xce7d1ab6b16a027!2sPopular%20Diagnostic%20Centre%20Ltd.!5e0!3m2!1sen!2sbd!4v1759241726234!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade',
       hours: [
-        { day: 'Saturday - Monday', time: '4:00 PM - 9:00 PM' },
-        { day: 'Wednesday - Thursday', time: '4:00 AM - 9:00 PM' },
+        { day: 'Saturday-Monday', time: '4:00 PM - 9:00 PM' },
+        { day: 'Wednesday-Thursday', time: '4:00 AM - 9:00 PM' },
         { day: 'Friday', time: '8:00 PM - 10:00 PM' },
       ]
     },
@@ -183,7 +183,7 @@ const Contact = () => {
                   <ul className="contact-hours-list">
                     {clinic.hours.map((hour, index) => (
                       <li key={index}>
-                        <span>{hour.day}</span> <span>{hour.time}</span>
+                        <span className='contact-hours-list-right'>{hour.day}</span> <span className='contact-hours-list-left'>{hour.time}</span>
                       </li>
                     ))}
                   </ul>
@@ -192,7 +192,9 @@ const Contact = () => {
                 <div className="contact-details">
                   <div className="contact-detail">
                     <i className="fas fa-phone"></i>
-                    <a href={`tel:${clinic.phone}`} className="contact-link">{clinic.phone}</a>
+                        <a href={`tel:${clinic.phone}`} className="contact-link">
+                            {clinic.phone}
+                          </a>
                   </div>
                   <div className="contact-detail">
                     <i className="fas fa-envelope"></i>
@@ -212,14 +214,14 @@ const Contact = () => {
                     referrerPolicy="no-referrer-when-downgrade"
                     title={`Map of ${clinic.name}`}
                   ></iframe>
-                  <div className="contact-map-overlay">
+                  {/* <div className="contact-map-overlay">
                     <button 
                       className="contact-view-map-btn"
                       onClick={() => openMap(clinic.map)}
                     >
                       View Larger Map
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

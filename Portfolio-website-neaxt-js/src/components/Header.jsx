@@ -48,7 +48,7 @@ function DeskHeader() {
     { href: '/blogs', label: 'Blogs' },
     { href: '/videos', label: 'Videos' },
     { href: '/gallery', label: 'Gallery' },
-    { href: '/certificate-award', label: 'Certificate & Award' },
+    { href: '/awards', label: 'Awards' },
     { href: '/contact', label: 'Contact' },
   ];
 
@@ -61,7 +61,7 @@ function DeskHeader() {
             <ActiveLink href="/">Home</ActiveLink>
           </li>
           <li>
-            <ActiveLink href="/about-me">About Me</ActiveLink>
+            <ActiveLink href="/about">About</ActiveLink>
           </li>
           {navLinks.map((link) => (
             <li key={link.href}>
@@ -82,13 +82,13 @@ function HeaderMobile() {
 
   const links = [
     { href: '/', label: 'Home' },
-    { href: '/about-me', label: 'About Me' },
+    { href: '/about', label: 'About' },
     { href: '/CV', label: 'CV' },
     { href: '/publications', label: 'Publication' },
     { href: '/blogs', label: 'Blogs' },
     { href: '/videos', label: 'Videos' },
     { href: '/gallery', label: 'Gallery' },
-    { href: '/certificate-award', label: 'Certificate & Award' },
+    { href: '/awards', label: 'Awards' },
     { href: '/contact', label: 'Contact' },
   ];
 

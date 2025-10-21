@@ -12,23 +12,12 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // -------------------- Hero Section --------------------
 const Hero = () => {
-  const [boxHeight, setBoxHeight] = useState("700px");
 
   const bgurl = useBackgroundLoader(
     "https://ontenet-cdn.pages.dev/hero-bg-img.png",
     "https://ontenet-cdn.pages.dev/bg-gif-hero.gif"
   );
 
-  useEffect(() => {
-    const updateHeight = () => {
-      const width = window.innerWidth;
-      setBoxHeight(width < 500 ? "auto" : "700px");
-    };
-
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
-  }, []);
 
   return (
     <section
@@ -67,10 +56,10 @@ const Hero = () => {
             alt="Dr. Muhammad Abdur Razzak transplant nephrologist"
             className="home-hero-image"
             loading="lazy"
-            style={{ height: boxHeight, width: "auto" }}
             unoptimized // important for remote images + static export
             width={500} // required numeric width (used for aspect ratio only)
-            height={500} // required numeric height
+            height={889} // required numeric height
+            style={{height:"100%", width:"auto"}}
           />
         </div>
       </div>
@@ -101,7 +90,7 @@ const About = () => {
 
       <div className="home-aboute-content">
         <div className="home-aboute-info">
-          <h2>Dr. Muhammad Abdur Razzak</h2>
+          <h1>Dr. Muhammad Abdur Razzak</h1>
           <h3>MBBS (AFMC), MD (Nephrology), FASN (USA)</h3>
           <p>
             Renowned Transplant Nephrology Specialist in Bangladesh.
@@ -150,7 +139,7 @@ const Qualification = () => (
             <h3>Assistant Professor (Nephrology)</h3>
             <p>
               Dhaka Medical College and Hospital, Dhaka <br />
-              From: 01-12-2019 to 25-03-2020
+              From: December 2019 to March 2020
             </p>
           </div>
         </div>
@@ -160,7 +149,7 @@ const Qualification = () => (
             <h3>Assistant Professor (Department of Nephrology)</h3>
             <p>
               Dhaka Medical College and Hospital, Dhaka <br />
-              From: 22-12-2021 to 07-06-2022
+              From: December 2021 to June 2022
             </p>
           </div>
         </div>
@@ -431,7 +420,7 @@ export default function Home() {
       <About />
       <Qualification />
       <HomeLatestPosts />
-      <HomeVideoSection />
+      {/* <HomeVideoSection /> */}
       <HomeContact />
     </div>
   );

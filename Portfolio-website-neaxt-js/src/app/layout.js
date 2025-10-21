@@ -100,6 +100,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href={API_URL+"/wp-content/uploads/2025/10/dr-muhammad-abdur-razzak-logo.png"} />
          <meta name="robots" content="index, follow" />
         {/* script schema */}
