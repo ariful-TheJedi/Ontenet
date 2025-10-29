@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link"
 
 // import "./VideoPage.css";
 
@@ -61,14 +62,18 @@ const VideoPage = ({title}) => {
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fXNWqhXhoqI?si=EMxw1tcA9KkOCDxO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;fullscreen;web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>       
           </div>
         </div>
-
-
       </section>
 
       {/* VIEW MORE BUTTON */}
-      <div className="video-more-wrapper">
-        <a href="https://www.youtube.com/@dr.muhammadabdurrazzak9632" className="video-more-btn">View My Channel</a>
-      </div>
+      <Link
+      href="https://www.youtube.com/@dr.muhammadabdurrazzak9632" // <-- Replace with your real channel link
+      target="_blank"
+      rel="noopener noreferrer"
+      className="ytb-btn"
+      >
+      <i className="fa-solid fa-arrow-up-right-from-square"></i>
+      <span className="ytb-btn-text">Visit My Channel</span>
+    </Link>
     </div>
   );
 };

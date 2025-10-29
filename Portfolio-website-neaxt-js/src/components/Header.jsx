@@ -74,38 +74,88 @@ function DeskHeader() {
   );
 }
 
-//
-// Mobile Header
-//
-function HeaderMobile() {
+
+// Mobile Header(old stable)
+// function HeaderMobile() {
+//   const [menuOpen, setMenuOpen] = useState(false);
+//   const links = [
+//     { href: '/', label: 'Home' },
+//     { href: '/about', label: 'About' },
+//     { href: '/CV', label: 'CV' },
+//     { href: '/blogs', label: 'Blogs' },
+//     { href: '/videos', label: 'Videos' },
+//     { href: '/gallery', label: 'Gallery' },
+//     { href: '/awards', label: 'Awards' },
+//     { href: '/contact', label: 'Contact' },
+//   ];
+
+
+
+//   return (
+//     <header className="header-mobile">
+//       <div className="header-container">
+//         <Logo />
+//         <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+//           <i className={`fa-solid ${menuOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
+//         </div>
+//       </div>
+
+//       <nav className={`header-nav-mobile ${menuOpen ? 'open' : ''}`}>
+//         <ul>
+//           {links.map((link) => (
+//             <li key={link.href} onClick={() => setMenuOpen(false)}>
+//               <Link href={link.href}>{link.label}</Link>
+//             </li>
+//           ))}
+//         </ul>
+//       </nav>
+//     </header>
+//   );
+// }
+
+
+
+
+ function HeaderMobile() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/CV', label: 'CV' },
-    { href: '/publications', label: 'Publication' },
-    { href: '/blogs', label: 'Blogs' },
-    { href: '/videos', label: 'Videos' },
-    { href: '/gallery', label: 'Gallery' },
-    { href: '/awards', label: 'Awards' },
-    { href: '/contact', label: 'Contact' },
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/CV", label: "CV" },
+    { href: "/blogs", label: "Blogs" },
+    { href: "/videos", label: "Videos" },
+    { href: "/gallery", label: "Gallery" },
+    { href: "/awards", label: "Awards" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (
     <header className="header-mobile">
       <div className="header-container">
         <Logo />
-        <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
-          <i className={`fa-solid ${menuOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
-        </div>
+        <button
+          className="menu-icon"
+          onClick={() => setMenuOpen((s) => !s)}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
+        >
+          <i className={`fa-solid ${menuOpen ? "fa-xmark" : "fa-bars"}`}></i>
+        </button>
       </div>
 
-      <nav className={`nav ${menuOpen ? 'open' : ''}`}>
+      {/* ALWAYS in the DOM — only class toggles */}
+      <nav
+        id="mobile-nav"
+        className={`header-nav-mobile ${menuOpen ? "open" : ""}`}
+        aria-hidden={!menuOpen}
+      >
         <ul>
           {links.map((link) => (
-            <li key={link.href} onClick={() => setMenuOpen(false)}>
-              <Link href={link.href}>{link.label}</Link>
+            <li key={link.href}>
+              <Link href={link.href} onClick={() => setMenuOpen(false)}>
+                {link.label}
+              </Link>
             </li>
           ))}
         </ul>
@@ -113,6 +163,9 @@ function HeaderMobile() {
     </header>
   );
 }
+
+
+
 
 //
 // Active Link Component for Next.js

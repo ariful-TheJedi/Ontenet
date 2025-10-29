@@ -12,11 +12,13 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // -------------------- Hero Section --------------------
 const Hero = () => {
-
-  const bgurl = useBackgroundLoader(
+const bgurl = useBackgroundLoader(
     "https://ontenet-cdn.pages.dev/hero-bg-img.png",
     "https://ontenet-cdn.pages.dev/bg-gif-hero.gif"
   );
+
+
+
 
 
   return (
@@ -50,20 +52,25 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="home-hero-image-wrap">
-          <Image
-            src={`${API_URL}/wp-content/uploads/2025/10/dr-muhammad-abdur-razzak-compressed.webp`}
-            alt="Dr. Muhammad Abdur Razzak transplant nephrologist"
-            className="home-hero-image"
-            loading="lazy"
-            unoptimized // important for remote images + static export
-            width={500} // required numeric width (used for aspect ratio only)
-            height={889} // required numeric height
-            style={{height:"100%", width:"auto"}}
-          />
-        </div>
-      </div>
-    </section>
+<div className="home-hero-image-wrap">
+      <Image
+        src={`${API_URL}/wp-content/uploads/2025/10/dr-muhammad-abdur-razzak-compressed.webp`}
+        alt="Dr. Muhammad Abdur Razzak transplant nephrologist"
+        className="home-hero-image"
+        unoptimized
+        priority
+        width={556}
+        height={729}
+        // style={{
+        //   width: "100%",
+        //   height: "100%",
+        //   objectPosition: "bottom center",
+        //   transition: "object-fit 0.4s ease",
+        // }}
+      />
+    </div>
+</div>
+</section>
   );
 };
 
@@ -93,19 +100,13 @@ const About = () => {
           <h1>Dr. Muhammad Abdur Razzak</h1>
           <h3>MBBS (AFMC), MD (Nephrology), FASN (USA)</h3>
           <p>
-            Renowned Transplant Nephrology Specialist in Bangladesh.
-            <br />
-            Dr. Muhammad Abdur Razzak is a distinguished kidney specialist with
-            over a decade of clinical experience in Transplant nephrology. He
-            possesses an MBBS degree from Armed Forces Medical College (AFMC),
-            an MD in Nephrology, and Fellow of the American Society of
-            Nephrology (FASN, USA). Being an Assistant Professor at the
-            National Institute of Kidney Diseases and Urology, Bangladesh,
-            presently, Dr. Razzak is well renowned internationally for his
-            extensive experience in managing chronic kidney disease, dialysis
-            therapy, and renal transplant evaluation.
-            <br />
-          </p>
+            Dr. Muhammad Abdur Razzak is a leading kidney specialist with over a decade of experience in transplant nephrology.
+            He has completed his 2 years of Clinical Fellowship in Nephrology from the University of Toronto, Canada, and is a Fellow of 
+            the American Society of Nephrology (FASN, USA).
+          <br/><br/>
+            Currently serving as an Assistant Professor at the National Institute of Kidney Diseases and Urology (NIKDU), Bangladesh, Dr. Razzak is widely recognized for his expertise in managing chronic kidney disease, dialysis therapy, and renal transplant evaluation.
+            His dedication to advanced kidney care has made him one of the most trusted transplant nephrology specialists in Bangladesh.<br></br>     
+        </p>
         </div>
 
         <div className="home-aboute-actions">
@@ -379,7 +380,7 @@ const HomeContact = () => {
                 </div>
                 <div className="home-form-group-full-width">
                   <label htmlFor="message">Message*</label>
-                  <textarea name="message" required className="home-form-control home-textarea" id="message" rows="6" placeholder=""></textarea>
+                  <textarea name="message" required className="home-form-control home-textarea" id="message" row="6" placeholder=""></textarea>
                 </div>
                 <div className="home-form-group-full-width">
                   <button type="submit" className="home-send-message-btn" disabled={formStatus.submitting}>

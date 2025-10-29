@@ -38,12 +38,12 @@ export default function BlogPost({ post }) {
           {/* Author Short Bio */}
           <div className="author-card">
             <img
-              src={`${API_URL}/wp-content/uploads/2025/10/dr-muhammad-abdur-razzak-logo.png`}
+              src={`${API_URL}/wp-content/uploads/2025/10/bio-pic-br-muhammad-abdur-razzak-compressed.webp`}
               alt="Author dr-muhammad-abdur-razzak transplant nephrologist"
               className="author-image"
             />
             <div className="author-info">
-              <a href="/about-me" className="author-name">
+              <a href="/about" className="author-name">
                 Dr. Muhammad Abdur Razzak
               </a>
               <p className="author-title">Transplant Nephrologist</p>
